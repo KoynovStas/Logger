@@ -43,6 +43,7 @@
 Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint8_t max_index, uint32_t max_size):
     //public
     enabled(true),
+    short_prefix(true),
     time_fmt("%F %T: "),
     level(log_level),
 
@@ -50,6 +51,16 @@ Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint8_t m
     _log_name(log_name),
     _current_log_level(ll_info)
 {
+
+    _log_level_prefix.push_back({"F: ", "Fatal: "});    // ll_fatal
+    _log_level_prefix.push_back({"C: ", "Critical: "}); // ll_crit,
+    _log_level_prefix.push_back({"E: ", "Error: "});    // ll_error,
+    _log_level_prefix.push_back({"W: ", "Warning: "});  // ll_warn,
+    _log_level_prefix.push_back({"I: ", "Info: "});     // ll_info,
+    _log_level_prefix.push_back({"D: ", "Debug: "});    // ll_debug,
+    _log_level_prefix.push_back({"T: ", "Trace: "});    // ll_trace,
+
+
 
     set_max_index(max_index);
     set_max_size(max_size);
@@ -186,6 +197,19 @@ int Logger::_get_next_index()
         _current_index = 0;
 
     return _current_index;
+}
+
+
+
+void Logger::_print_prefix()
+{
+    if( short_prefix )
+        _log << _log_level_prefix[_current_log_level].short_prefix;
+    else
+        _log << _log_level_prefix[_current_log_level].long_prefix;
+
+
+    _print_time();
 }
 
 

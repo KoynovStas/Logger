@@ -37,6 +37,7 @@
 
 #include <stdint.h>
 #include <fstream>
+#include <vector>
 
 
 
@@ -69,6 +70,7 @@ class Logger
 
 
         bool        enabled;
+        bool        short_prefix;
         const char *time_fmt;       //see man 3 strftime
         LogLevel    level;
 
@@ -97,6 +99,12 @@ class Logger
         };
 
 
+        struct LogLevelPrefix{
+            const char *short_prefix;
+            const char *long_prefix;
+        };
+
+
         std::fstream    _log;
         std::string     _log_name;
         LogLevel        _current_log_level;
@@ -105,10 +113,14 @@ class Logger
         uint32_t        _max_size;
 
 
+        std::vector<LogLevelPrefix> _log_level_prefix;
+
+
         void     _save_last_pos();
         uint32_t _get_last_pos();
         void     _prepare_first_log();
         int      _get_next_index();
+        void     _print_prefix();
         void     _print_time();
 
 
