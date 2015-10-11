@@ -53,5 +53,15 @@ Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint8_t m
 
 Logger::~Logger()
 {
+    close();
+}
 
+
+
+void Logger::close()
+{
+    if( !_log.is_open() )
+        return;
+
+    _log.close();
 }

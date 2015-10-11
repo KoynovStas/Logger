@@ -72,6 +72,9 @@ class Logger
         LogLevel    level;
 
 
+        void close();
+
+
 
     private:
 
