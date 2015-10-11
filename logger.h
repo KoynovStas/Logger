@@ -112,6 +112,28 @@ class Logger
         }
 
 
+        // Set current log_level (for next messages)
+        friend Logger& operator<<(Logger &os, const LogLevel level)
+        {
+            if(!os.enabled)
+                return os;
+
+
+            os._current_log_level = level;
+
+
+            if( os._current_log_level > os.level )
+                return os;
+
+
+            os._check_size_log();
+            os._print_prefix();
+
+            return os;
+        }
+
+
+
     private:
 
 
