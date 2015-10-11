@@ -211,5 +211,30 @@ int Logger::_open_ring_log(uint32_t last_pos)
 
 int Logger::_open_index_log(uint32_t index_log)
 {
+    std::string log_name = _log_name;
 
+
+    if( index_log >= _max_index )
+        index_log = 0;
+
+
+    _current_index = index_log;
+
+
+    if( _current_index != 0 )
+        log_name += std::to_string(_current_index);
+
+
+    _log.close();
+    _log.open(log_name, std::fstream::out | std::fstream::trunc);
+
+    if(_current_index == 0)
+        _log << std::setw(WIDTH_FOR_LAST_POS) << std::endl; // do setw for saving last_pos
+
+
+    if( !_log.is_open() )
+        return -1; //error
+
+
+    return 0; //good job
 }
