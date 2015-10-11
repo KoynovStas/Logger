@@ -38,6 +38,7 @@
 #include <stdint.h>
 #include <fstream>
 #include <vector>
+#include <pthread.h>
 
 
 
@@ -66,7 +67,7 @@ class Logger
 
         explicit Logger(const std::string log_name = "", LogLevel log_level = ll_error,
                         uint8_t max_index = 1, uint32_t max_size = MIN_SIZE_LOG);
-        ~Logger();
+        virtual ~Logger();
 
 
         bool        enabled;
@@ -136,7 +137,6 @@ class Logger
 
     private:
 
-
         enum{
 
             WIDTH_FOR_LAST_POS = 8,
@@ -173,6 +173,45 @@ class Logger
         int  _open_index_log(uint32_t index_log);
 };
 
+
+
+
+
+class Logger_r : public Logger
+{
+
+    public:
+
+        enum LogMutexAction{
+
+            lm_lock  = 0,
+            lm_unlock,
+        };
+
+
+        explicit Logger_r(const std::string log_name = "", LogLevel log_level = ll_error,
+                        uint8_t max_index = 1, uint32_t max_size = MIN_SIZE_LOG);
+        ~Logger_r();
+
+
+        // manipulation to inner mutex
+        friend Logger_r& operator<<(Logger_r &os, const LogMutexAction action)
+        {
+            if( action == LogMutexAction::lm_lock )
+                pthread_mutex_lock(&os._log_mutex);
+            else
+                pthread_mutex_unlock(&os._log_mutex);
+
+            return os;
+        }
+
+
+
+    private:
+
+        pthread_mutex_t _log_mutex;
+
+};
 
 
 

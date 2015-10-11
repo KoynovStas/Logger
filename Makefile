@@ -1,9 +1,9 @@
-CPPFLAGS += -O2 -std=c++11 -s  -Wall
+CPPFLAGS += -O2 -std=c++11 -s -lpthread -Wall
 CPP       =  g++
 
 
 # list of tests for build
-TESTS  = logger_test
+TESTS  = logger_test logger_r_test
 
 
 

@@ -301,3 +301,28 @@ int Logger::_open_index_log(uint32_t index_log)
 
     return 0; //good job
 }
+
+
+
+
+
+//---------------------- Logger_r ----------------------
+
+
+
+
+
+Logger_r::Logger_r(const std::string log_name, Logger::LogLevel log_level, uint8_t max_index, uint32_t max_size):
+    Logger(log_name, log_level, max_index, max_size)
+{
+    pthread_mutex_init(&_log_mutex, NULL);
+}
+
+
+
+Logger_r::~Logger_r()
+{
+    close(); //must close before destroy mutex
+
+    pthread_mutex_destroy(&_log_mutex);
+}
