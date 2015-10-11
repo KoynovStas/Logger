@@ -10,6 +10,9 @@
 
 int main()
 {
+    Logger my_log;
+
+
 
     return EXIT_SUCCESS; // good job
 }

@@ -35,6 +35,56 @@
 #define LOGGER_H
 
 
+#include <stdint.h>
+#include <fstream>
+
+
+
+
+
+class Logger
+{
+
+    public:
+
+        static const uint32_t MIN_SIZE_LOG = 1024;
+
+
+        enum LogLevel{
+
+            ll_fatal = 0, // Unrecoverable error.
+            ll_crit,      // Critical error
+            ll_error,     // Error
+            ll_warn,      // Potentially harmful situation.
+            ll_info,      // Normal operational messages that require no action
+            ll_debug,     // Fine-grained debugging.
+            ll_trace,     // Verbose debugging.
+        };
+
+
+
+        explicit Logger(const std::string log_name = "", LogLevel log_level = ll_error,
+                        uint8_t max_index = 1, uint32_t max_size = MIN_SIZE_LOG);
+        ~Logger();
+
+
+        bool        enabled;
+        LogLevel    level;
+
+
+
+    private:
+
+
+        std::fstream    _log;
+        std::string     _log_name;
+        LogLevel        _current_log_level;
+        uint8_t         _max_index;
+        uint8_t         _current_index;
+        uint32_t        _max_size;
+
+
+};
 
 
 #endif // LOGGER_H

@@ -30,3 +30,28 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+
+
+#include "logger.h"
+
+
+
+
+
+Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint8_t max_index, uint32_t max_size):
+    //public
+    enabled(true),
+    level(log_level),
+
+    //private
+    _log_name(log_name),
+    _current_log_level(ll_info)
+{
+}
+
+
+
+Logger::~Logger()
+{
+
+}
