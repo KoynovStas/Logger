@@ -216,4 +216,5 @@ class Logger_r : public Logger
 
 
 
+
 #endif // LOGGER_H
