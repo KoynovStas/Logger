@@ -77,6 +77,7 @@ class Logger
         bool is_open() { return  _log.is_open(); }
         void flush() { _log.flush(); }
 
+        uint32_t set_max_size(uint32_t max_size);
         uint32_t get_max_size() { return _max_size; }
 
 

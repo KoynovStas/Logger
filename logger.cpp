@@ -65,3 +65,15 @@ void Logger::close()
 
     _log.close();
 }
+
+
+
+uint32_t Logger::set_max_size(uint32_t max_size)
+{
+    if( max_size < MIN_SIZE_LOG )
+        max_size = MIN_SIZE_LOG;
+
+    _max_size = max_size;
+
+    return _max_size;
+}
