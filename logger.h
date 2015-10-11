@@ -89,6 +89,13 @@ class Logger
     private:
 
 
+        enum{
+
+            WIDTH_FOR_LAST_POS = 8,
+            FIRST_POS_FOR_LOG  = 9  //WIDTH_FOR_LAST_POS +1('\n')
+        };
+
+
         std::fstream    _log;
         std::string     _log_name;
         LogLevel        _current_log_level;
@@ -97,7 +104,9 @@ class Logger
         uint32_t        _max_size;
 
 
+        void     _save_last_pos();
         uint32_t _get_last_pos();
+        int      _get_next_index();
 
 
         int  _open_ring_log(uint32_t last_pos);

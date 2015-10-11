@@ -32,6 +32,7 @@
  */
 
 #include <iostream>
+#include <iomanip>
 
 #include "logger.h"
 
@@ -114,6 +115,34 @@ uint8_t Logger::set_max_index(uint8_t max_index)
 
 
 
+void Logger::_save_last_pos()
+{
+    uint32_t last_pos;
+
+
+    _log.flush();
+
+    if( _max_index == 1)
+    {
+        last_pos = _log.tellp();
+    }
+    else
+    {
+        last_pos = _get_next_index();
+//        _prepare_first_log();
+
+        _log.close();
+        _log.open(_log_name, std::fstream::out | std::fstream::in); //open first log
+    }
+
+
+    _log.seekp(0);
+
+    _log << std::setw(WIDTH_FOR_LAST_POS) << last_pos << std::endl;
+}
+
+
+
 uint32_t Logger::_get_last_pos()
 {
     uint32_t ret;
@@ -127,6 +156,16 @@ uint32_t Logger::_get_last_pos()
     temp_stream >> ret;
 
     return ret;
+}
+
+
+
+int Logger::_get_next_index()
+{
+    if( ++_current_index >= _max_index )
+        _current_index = 0;
+
+    return _current_index;
 }
 
 
