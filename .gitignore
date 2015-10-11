@@ -28,6 +28,10 @@ logger_test
 
 
 
+#log files
+*.log*
+
+
 # Temp files
 *.*~
 
