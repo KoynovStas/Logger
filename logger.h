@@ -72,6 +72,7 @@ class Logger
         LogLevel    level;
 
 
+        int  open(const std::string &log_name);
         void close();
 
         bool is_open() { return  _log.is_open(); }
@@ -94,6 +95,13 @@ class Logger
         uint8_t         _max_index;
         uint8_t         _current_index;
         uint32_t        _max_size;
+
+
+        uint32_t _get_last_pos();
+
+
+        int  _open_ring_log(uint32_t last_pos);
+        int  _open_index_log(uint32_t index_log);
 
 
 };

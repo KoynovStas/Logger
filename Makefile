@@ -1,4 +1,4 @@
-CPPFLAGS += -O2  -s  -Wall
+CPPFLAGS += -O2 -std=c++11 -s  -Wall
 CPP       =  g++
 
 

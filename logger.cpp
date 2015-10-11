@@ -31,6 +31,7 @@
  *
  */
 
+#include <iostream>
 
 #include "logger.h"
 
@@ -50,6 +51,7 @@ Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint8_t m
 
     set_max_index(max_index);
     set_max_size(max_size);
+    open(log_name);
 }
 
 
@@ -57,6 +59,23 @@ Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint8_t m
 Logger::~Logger()
 {
     close();
+}
+
+
+
+int Logger::open(const std::string &log_name)
+{
+    if(log_name.empty())
+        return -1; //error
+
+
+    _log_name = log_name;
+
+
+    if( _max_index == 1)
+        return _open_ring_log(_get_last_pos());
+    else
+        return _open_index_log(_get_last_pos());
 }
 
 
@@ -91,4 +110,35 @@ uint8_t Logger::set_max_index(uint8_t max_index)
     _max_index = max_index;
 
     return _max_index;
+}
+
+
+
+uint32_t Logger::_get_last_pos()
+{
+    uint32_t ret;
+    std::ifstream temp_stream(_log_name, std::fstream::in);
+
+
+    if( !temp_stream.is_open() )
+        return 0;
+
+
+    temp_stream >> ret;
+
+    return ret;
+}
+
+
+
+int Logger::_open_ring_log(uint32_t last_pos)
+{
+
+}
+
+
+
+int Logger::_open_index_log(uint32_t index_log)
+{
+
 }
