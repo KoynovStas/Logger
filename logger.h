@@ -75,6 +75,7 @@ class Logger
         void close();
 
         bool is_open() { return  _log.is_open(); }
+        void flush() { _log.flush(); }
 
 
 
