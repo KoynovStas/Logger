@@ -69,6 +69,7 @@ class Logger
 
 
         bool        enabled;
+        const char *time_fmt;       //see man 3 strftime
         LogLevel    level;
 
 
@@ -108,6 +109,7 @@ class Logger
         uint32_t _get_last_pos();
         void     _prepare_first_log();
         int      _get_next_index();
+        void     _print_time();
 
 
         int  _open_ring_log(uint32_t last_pos);

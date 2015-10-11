@@ -43,6 +43,7 @@
 Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint8_t max_index, uint32_t max_size):
     //public
     enabled(true),
+    time_fmt("%F %T: "),
     level(log_level),
 
     //private
@@ -185,6 +186,28 @@ int Logger::_get_next_index()
         _current_index = 0;
 
     return _current_index;
+}
+
+
+
+void Logger::_print_time()
+{
+    char buf[128];
+    time_t rawtime;
+    struct tm timeinfo;
+
+
+    if( !time_fmt )
+        return;
+
+
+    time(&rawtime);
+
+    localtime_r(&rawtime, &timeinfo);
+
+    strftime(buf, sizeof(buf), time_fmt, &timeinfo);
+
+    _log << buf;
 }
 
 
