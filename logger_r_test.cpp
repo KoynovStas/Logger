@@ -68,7 +68,7 @@ void start_test_threads(void)
         perror_exit("Cant open test_r.log");
 
     rlog.set_max_index(3);
-    rlog.set_max_size(10<<20); //1 MB
+    rlog.set_max_size(10<<20);
 
 
     if(pthread_create(&test_threads[0], NULL, test_atomic_thread1, NULL) != 0)

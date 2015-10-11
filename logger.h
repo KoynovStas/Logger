@@ -210,7 +210,6 @@ class Logger_r : public Logger
     private:
 
         pthread_mutex_t _log_mutex;
-
 };
 
 
