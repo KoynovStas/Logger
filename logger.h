@@ -101,6 +101,16 @@ class Logger
         }
 
 
+        // for process iomanipulators (std::endl etc...)
+        typedef std::ostream& (*ostream_manipulator)(std::ostream&);
+        friend Logger& operator<<(Logger &os, ostream_manipulator pf)
+        {
+            if(!os.enabled)
+                return os;
+
+            return operator<< <ostream_manipulator> (os, pf);
+        }
+
 
     private:
 
