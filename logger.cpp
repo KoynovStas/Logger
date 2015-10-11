@@ -86,6 +86,8 @@ void Logger::close()
     if( !_log.is_open() )
         return;
 
+
+    _save_last_pos();
     _log.close();
 }
 
