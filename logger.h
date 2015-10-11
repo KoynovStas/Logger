@@ -70,10 +70,10 @@ class Logger
         virtual ~Logger();
 
 
-        bool        enabled;
-        bool        short_prefix;
-        const char *time_fmt;       //see man 3 strftime
-        LogLevel    level;
+        bool        enabled;        // default: true
+        bool        short_prefix;   // default: true
+        const char *time_fmt;       // default: "%F %T: " see man 3 strftime
+        LogLevel    level;          // default: ll_error
 
 
         int  open(const std::string &log_name);
