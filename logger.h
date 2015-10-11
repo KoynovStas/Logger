@@ -106,6 +106,7 @@ class Logger
 
         void     _save_last_pos();
         uint32_t _get_last_pos();
+        void     _prepare_first_log();
         int      _get_next_index();
 
 

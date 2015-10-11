@@ -129,7 +129,7 @@ void Logger::_save_last_pos()
     else
     {
         last_pos = _get_next_index();
-//        _prepare_first_log();
+        _prepare_first_log();
 
         _log.close();
         _log.open(_log_name, std::fstream::out | std::fstream::in); //open first log
@@ -156,6 +156,23 @@ uint32_t Logger::_get_last_pos()
     temp_stream >> ret;
 
     return ret;
+}
+
+
+
+void Logger::_prepare_first_log()
+{
+    // will create file(_log_name) if file not exist
+    std::fstream file(_log_name, std::fstream::out | std::fstream::in | std::fstream::app);
+
+
+    // get length of file:
+    file.seekg(0, file.end);
+    int length = file.tellg();
+    file.seekg(0, file.beg);
+
+    if( length == 0)
+        file << std::setw(WIDTH_FOR_LAST_POS) << FIRST_POS_FOR_LOG << std::endl; // do setw for saving last_pos
 }
 
 
