@@ -88,6 +88,19 @@ class Logger
         uint8_t get_max_index() { return _max_index; }
 
 
+        template <typename T>
+        friend Logger& operator<<(Logger &os, const T &data)
+        {
+            if( (!os.enabled) || (os._current_log_level > os.level) )
+                return os;
+
+            // write to log
+            os._log << data;
+
+            return os;
+        }
+
+
 
     private:
 
