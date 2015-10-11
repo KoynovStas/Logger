@@ -189,7 +189,22 @@ int Logger::_get_next_index()
 
 int Logger::_open_ring_log(uint32_t last_pos)
 {
+    _prepare_first_log();
 
+
+    if( last_pos >= _max_size )
+        last_pos = FIRST_POS_FOR_LOG;
+
+
+    _log.open(_log_name, std::fstream::out | std::fstream::in);
+    _log.seekp(last_pos);
+
+
+    if( !_log.is_open() )
+        return -1; //error
+
+
+    return 0; //good job
 }
 
 
