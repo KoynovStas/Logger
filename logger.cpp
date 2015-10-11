@@ -47,6 +47,9 @@ Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint8_t m
     _log_name(log_name),
     _current_log_level(ll_info)
 {
+
+    set_max_index(max_index);
+    set_max_size(max_size);
 }
 
 
