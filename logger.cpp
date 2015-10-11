@@ -236,6 +236,20 @@ void Logger::_print_time()
 
 
 
+void Logger::_check_size_log()
+{
+    if( _log.tellp() < _max_size)
+        return;
+
+
+    if( _max_index == 1 )
+        _log.seekp(FIRST_POS_FOR_LOG);      // new cycle
+    else
+        _open_index_log(_get_next_index()); // next file
+}
+
+
+
 int Logger::_open_ring_log(uint32_t last_pos)
 {
     _prepare_first_log();

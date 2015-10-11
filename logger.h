@@ -122,12 +122,10 @@ class Logger
         int      _get_next_index();
         void     _print_prefix();
         void     _print_time();
-
+        void     _check_size_log();
 
         int  _open_ring_log(uint32_t last_pos);
         int  _open_index_log(uint32_t index_log);
-
-
 };
 
 
