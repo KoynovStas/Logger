@@ -77,3 +77,15 @@ uint32_t Logger::set_max_size(uint32_t max_size)
 
     return _max_size;
 }
+
+
+
+uint8_t Logger::set_max_index(uint8_t max_index)
+{
+    if( max_index == 0 )
+        max_index = 1;
+
+    _max_index = max_index;
+
+    return _max_index;
+}

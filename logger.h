@@ -80,6 +80,7 @@ class Logger
         uint32_t set_max_size(uint32_t max_size);
         uint32_t get_max_size() { return _max_size; }
 
+        uint8_t set_max_index(uint8_t max_index);
         uint8_t get_max_index() { return _max_index; }
 
 
