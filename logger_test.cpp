@@ -28,14 +28,14 @@ void ring_log_test()
     my_log << 1 << 2 << 3 << 4 << std::endl;
     my_log << 1.10 << 2.22 << 3.123456789 << -4.00001 << std::endl;
 
-    my_log << "--------- rick and morty is cool ---------" << std::endl;
-    my_log << "--------- Tolik loshara :)))---------" << std::endl;
-    my_log << "<1234567890>" << std::endl;
-    my_log << Logger::ll_error << "<1234567890>"     << std::endl;
-    my_log << Logger::ll_error << "<~!@#$%^&*()_+|>" << std::endl;
-    my_log << Logger::ll_error << "qwertyuiop[]" << std::endl;
-    my_log << Logger::ll_error << "asdfghjkl;'" << std::endl;
-    my_log << Logger::ll_error << "zxcvbnm,./" << std::endl;
+    my_log << "--------- rick and morty is cool ---------\n";
+    my_log << "--------- Tolik loshara :)))---------\n";
+    my_log << "<1234567890>\n";
+    my_log << Logger::ll_error << "<1234567890>\n";
+    my_log << Logger::ll_error << "<~!@#$%^&*()_+|>\n";
+    my_log << Logger::ll_error << "qwertyuiop[]\n";
+    my_log << Logger::ll_error << "asdfghjkl;'\n";
+    my_log << Logger::ll_error << "zxcvbnm,./\n";
 
 
     my_log << Logger::ll_trace << "Trace" << std::endl;
@@ -77,13 +77,14 @@ void index_log_test()
     my_log << 1 << 2 << 3 << 4 << std::endl;
     my_log << 1.10 << 2.22 << 3.123456789 << -4.00001 << std::endl;
 
-    my_log << "--------- rick and morty is cool ---------" << std::endl;
-    my_log << "<1234567890>" << std::endl;
-    my_log << Logger::ll_error << "<1234567890>"     << std::endl;
-    my_log << Logger::ll_error << "<~!@#$%^&*()_+|>" << std::endl;
-    my_log << Logger::ll_error << "qwertyuiop[]" << std::endl;
-    my_log << Logger::ll_error << "asdfghjkl;'" << std::endl;
-    my_log << Logger::ll_error << "zxcvbnm,./" << std::endl;
+    my_log << "--------- rick and morty is cool ---------\n";
+    my_log << "--------- Tolik loshara :)))---------\n";
+    my_log << "<1234567890>\n";
+    my_log << Logger::ll_error << "<1234567890>\n";
+    my_log << Logger::ll_error << "<~!@#$%^&*()_+|>\n";
+    my_log << Logger::ll_error << "qwertyuiop[]\n";
+    my_log << Logger::ll_error << "asdfghjkl;'\n";
+    my_log << Logger::ll_error << "zxcvbnm,./\n";
 
 
 
