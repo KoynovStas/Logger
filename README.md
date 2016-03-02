@@ -97,12 +97,17 @@ rlog << Logger_r::lm_unlock; //unlock inner mutex
 More details see: **[logger.h](./logger.h)**
 
 
+
 <br/>
 ## Usage
 **To start working, perform the following steps:**
 
 1. You need to include **[logger.h](./logger.h)** file in your **.cpp** file.
 2. And add file **[logger.cpp](./logger.cpp)** to list of source files to compile. (see an example)
+
+#### Note:
+> The compiler must support the C++11 standard.
+
 
 
 ***
@@ -113,7 +118,20 @@ More details see: **[logger.h](./logger.h)**
 2.  **[logger_r_test](./logger_r_test.cpp)** - how to work with the class **[Logger_r](./logger.h)**
 
 
+
+## Build tests
+
+```console
+make
+```
+
+
 <br/>
 ## License
 
 [BSD](./LICENSE).
+
+
+
+## Copyright
+Copyright (C) 2015 Koynov Stas - skojnov@yandex.ru
