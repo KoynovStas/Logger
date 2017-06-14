@@ -64,7 +64,7 @@ void index_log_test()
 
 
     my_log.level = Logger::ll_trace;
-//    rlog.short_prefix = false;
+//    rlog.long_prefix = true;
 //    rlog.time_fmt = "%T";
 
     my_log << "Hello ";
@@ -103,7 +103,6 @@ void index_log_test()
 
 int main()
 {
-
     ring_log_test();
     index_log_test();
 

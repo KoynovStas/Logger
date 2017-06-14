@@ -74,7 +74,7 @@ class Logger
 
 
         bool        enabled;        // default: true
-        bool        short_prefix;   // default: true
+        bool        long_prefix;    // default: false
         const char *time_fmt;       // default: "%F %T: " see man 3 strftime
         LogLevel    level;          // default: ll_error
 
@@ -147,12 +147,6 @@ class Logger
         };
 
 
-        struct LogLevelPrefix{
-            const char *short_prefix;
-            const char *long_prefix;
-        };
-
-
         std::fstream    _log;
         std::string     _log_name;
         LogLevel        _current_log_level;
@@ -160,8 +154,6 @@ class Logger
         uint8_t         _current_index;
         uint32_t        _max_size;
 
-
-        std::vector<LogLevelPrefix> _log_level_prefix;
 
 
         void     _save_last_pos();
