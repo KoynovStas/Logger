@@ -1,4 +1,5 @@
-CPPFLAGS += -O2 -std=c++11 -s -lpthread -Wall
+CPPFLAGS += -std=c++11 -O2 -s -lpthread -Wall
+CPPFLAGS += -I..
 CPP       =  g++
 
 
@@ -15,15 +16,15 @@ all: clean  $(TESTS)
 
 .PHONY: clean
 clean:
-	-@rm  *.o
-	-@rm  *.*~
-	-@rm  $(TESTS)
+	-@rm -f *.o
+	-@rm -f *.*~
+	-@rm -f $(TESTS)
 
 
 
 .PHONY: $(TESTS)
 $(TESTS):
-	$(CPP)  $@.cpp logger.cpp -o $@  $(CPPFLAGS)
+	$(CPP)  $@.cpp ../logger.cpp -o $@  $(CPPFLAGS)
 	@echo "  ---- Compiled $@ ----"
 	@echo ""
 
