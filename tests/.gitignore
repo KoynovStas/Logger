@@ -24,6 +24,7 @@
 
 
 # Binary files
+*.exe
 logger_test
 logger_r_test
 
@@ -35,15 +36,6 @@ logger_r_test
 
 # Temp files
 *.*~
-
-
-
-# Configs for QT_Creator (I use QT_Creator as IDE)
-*.config
-*.creator
-*.creator.user
-*.files
-*.includes
 
 
 
