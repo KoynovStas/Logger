@@ -44,6 +44,7 @@
 
 #include <stdint.h>
 #include <fstream>
+#include <iomanip>
 #include <pthread.h>
 
 
@@ -115,7 +116,8 @@ class Logger
             if(!os.enabled)
                 return os;
 
-            return operator<< <ostream_manipulator> (os, pf);
+            pf(os._log);
+            return os;
         }
 
 
