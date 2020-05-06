@@ -1,16 +1,32 @@
-CPPFLAGS += -std=c++11 -O2 -s -lpthread -Wall
-CPPFLAGS += -I..
-CPP       =  g++
+CXXFLAGS += -std=c++11 -O2 -Wall -lpthread
+CXXFLAGS += -I..
+CXX      ?=  g++
 
 
 # list of tests for build
-TESTS  = logger_test logger_r_test
+TESTS  = logger_test   \
+         logger_r_test
+
+
+
+UNAME := $(shell uname)
+
+ifneq ($(UNAME), Linux)
+BIN_TESTS       = $(addsuffix .exe, $(TESTS))
+CXXFLAGS       += -lucrtbase
+else
+BIN_TESTS       = $(TESTS)
+endif
 
 
 
 
 .PHONY: all
-all: clean  $(TESTS)
+all: $(BIN_TESTS)
+	@for test in $(BIN_TESTS) ; do  \
+    echo "  ---- Run $$test ----";  \
+	./$$test ; \
+    done
 
 
 
@@ -18,15 +34,15 @@ all: clean  $(TESTS)
 clean:
 	-@rm -f *.o
 	-@rm -f *.*~
-	-@rm -f $(TESTS)
+	-@rm -f $(BIN_TESTS)
 
 
 
-.PHONY: $(TESTS)
-$(TESTS):
-	$(CPP)  $@.cpp ../logger.cpp -o $@  $(CPPFLAGS)
+$(BIN_TESTS): ../logger.cpp ../logger.h
+	$(CXX)  $(basename $@).cpp ../logger.cpp -o $@  $(CXXFLAGS)
 	@echo "  ---- Compiled $@ ----"
 	@echo ""
+
 
 
 
@@ -37,4 +53,3 @@ help:
 	@echo "   clean   -  remove all binary files"
 	@echo "   all     -  clean and build all tests"
 	@echo "   help    -  This help"
-
