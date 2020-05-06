@@ -6,6 +6,8 @@
 #include "logger.h"
 
 
+
+
 #define  MAX_COUNT_LOOP_ITERATIONS  (1000000)
 
 
@@ -90,11 +92,8 @@ void start_test_threads(void)
 
 
 
-
-
 int main()
 {
-
     start_test_threads();
 
     return EXIT_SUCCESS; // good job
