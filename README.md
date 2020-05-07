@@ -16,7 +16,7 @@ The logger will overwrite from the beginning of the file (cycle mode) or write t
 **The class has the following public methods:**
 ```C++
 explicit Logger(const std::string log_name = "", LogLevel log_level = ll_error,
-                uint8_t max_index = 1, uint32_t max_size = MIN_SIZE_LOG);
+                uint32_t max_size = MIN_SIZE_LOG, uint8_t max_index = 1);
 
 virtual ~Logger();
 
@@ -82,6 +82,15 @@ rlog << Logger_r::ll_error << "messages" << std::endl;
 
 rlog << Logger_r::lm_unlock; //unlock inner mutex
 ```
+
+Or use LogLocker:
+```C++
+{
+    LogLocker lock(rlog);
+    rlog << Logger_r::ll_error << "messages" << std::endl;
+}
+```
+
 
 
 For Thread-safety coding and protection of object, you should use the following method:
