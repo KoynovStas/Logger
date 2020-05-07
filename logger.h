@@ -230,4 +230,22 @@ class LogLocker //RAII for lock/unlock inner mutex
 
 
 
+class LogFlagSaver //RAII for save/restore flags fstream
+{
+    public:
+        explicit LogFlagSaver(std::fstream& log):
+            _log(log),
+            _f(log.flags()) {}
+
+        ~LogFlagSaver() { _log.flags(_f); }
+
+    private:
+        std::fstream&      _log;
+        std::ios::fmtflags _f;
+};
+
+
+
+
+
 #endif // LOGGER_H

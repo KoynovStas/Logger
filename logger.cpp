@@ -127,6 +127,7 @@ uint8_t Logger::set_max_index(uint8_t max_index)
 
 void Logger::_save_last_pos()
 {
+    LogFlagSaver save_flags(_log);
     uint32_t last_pos;
 
 
