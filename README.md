@@ -15,7 +15,7 @@ The logger will overwrite from the beginning of the file (cycle mode) or write t
 
 **The class has the following public methods:**
 ```C++
-explicit Logger(const std::string log_name = "", LogLevel log_level = ll_error,
+explicit Logger(const std::string& log_name = "", LogLevel log_level = ll_error,
                 uint32_t max_size = MIN_SIZE_LOG, uint8_t max_index = 1);
 
 virtual ~Logger();

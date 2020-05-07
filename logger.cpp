@@ -48,7 +48,7 @@
 
 
 
-Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint32_t max_size, uint8_t max_index):
+Logger::Logger(const std::string& log_name, Logger::LogLevel log_level, uint32_t max_size, uint8_t max_index):
     //public
     enabled(true),
     long_prefix(false),
@@ -316,7 +316,7 @@ int Logger::_open_index_log(uint32_t index_log)
 
 
 
-Logger_r::Logger_r(const std::string log_name, Logger::LogLevel log_level, uint32_t max_size, uint8_t max_index):
+Logger_r::Logger_r(const std::string& log_name, Logger::LogLevel log_level, uint32_t max_size, uint8_t max_index):
     Logger(log_name, log_level, max_size, max_index)
 {
     pthread_mutex_init(&_mutex, NULL);

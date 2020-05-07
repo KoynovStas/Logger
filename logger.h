@@ -72,7 +72,7 @@ class Logger
 
 
 
-        explicit Logger(const std::string log_name = "", LogLevel log_level = ll_error,
+        explicit Logger(const std::string& log_name = "", LogLevel log_level = ll_error,
                         uint32_t max_size = MIN_SIZE_LOG, uint8_t max_index = 1);
         virtual ~Logger();
 
@@ -189,8 +189,8 @@ class Logger_r : public Logger
         };
 
 
-        explicit Logger_r(const std::string log_name = "", LogLevel log_level = ll_error,
-                        uint32_t max_size = MIN_SIZE_LOG, uint8_t max_index = 1);
+        explicit Logger_r(const std::string& log_name = "", LogLevel log_level = ll_error,
+                          uint32_t max_size = MIN_SIZE_LOG, uint8_t max_index = 1);
         ~Logger_r();
 
 
