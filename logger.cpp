@@ -2,7 +2,7 @@
  * logger.cpp
  *
  *
- * version 1.0
+ * version 1.1
  *
  *
  * BSD 3-Clause License
