@@ -27,7 +27,6 @@ void perror_exit(const char *error_message)
 
 void* test_atomic_thread1(void *thread_arg)
 {
-
     unsigned int i;
 
     for(i = 0; i < MAX_COUNT_LOOP_ITERATIONS; i++)
@@ -45,14 +44,12 @@ void* test_atomic_thread1(void *thread_arg)
 
 void* test_atomic_thread2(void *thread_arg)
 {
-
     unsigned int i;
 
     for(i = 0; i < MAX_COUNT_LOOP_ITERATIONS; i++)
     {
-        rlog << Logger_r::lm_lock;
+        LogLocker lock(rlog);
         rlog << Logger_r::ll_error << "=================" << 2 << '#' << 2.222222 << std::endl;
-        rlog << Logger_r::lm_unlock;
     }
 
 

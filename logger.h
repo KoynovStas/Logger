@@ -198,18 +198,32 @@ class Logger_r : public Logger
         friend Logger_r& operator<<(Logger_r &os, const LogMutexAction action)
         {
             if( action == LogMutexAction::lm_lock )
-                pthread_mutex_lock(&os._log_mutex);
+                pthread_mutex_lock(&os._mutex);
             else
-                pthread_mutex_unlock(&os._log_mutex);
+                pthread_mutex_unlock(&os._mutex);
 
             return os;
         }
 
 
+    private:
+        pthread_mutex_t _mutex;
+};
+
+
+
+
+
+class LogLocker //RAII for lock/unlock inner mutex
+{
+    public:
+        explicit LogLocker(Logger_r& log) : _log(log)
+        { _log << Logger_r::lm_lock; }
+
+        ~LogLocker() { _log << Logger_r::lm_unlock; }
 
     private:
-
-        pthread_mutex_t _log_mutex;
+        Logger_r& _log;
 };
 
 
