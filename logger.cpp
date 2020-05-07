@@ -59,7 +59,6 @@ Logger::Logger(const std::string log_name, Logger::LogLevel log_level, uint32_t 
     _log_name(log_name),
     _current_log_level(ll_info)
 {
-
     set_max_index(max_index);
     set_max_size(max_size);
     open(log_name);
@@ -93,12 +92,11 @@ int Logger::open(const std::string &log_name)
 
 void Logger::close()
 {
-    if( !_log.is_open() )
-        return;
-
-
-    _save_last_pos();
-    _log.close();
+    if( _log.is_open() )
+    {
+        _save_last_pos();
+        _log.close();
+    }
 }
 
 
